@@ -1,0 +1,29 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+
+        // Assists in working with annotation processors for Android Studio.
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+
+    tasks.withType(Test) {
+        testLogging.showStandardStreams = true
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

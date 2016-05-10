@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.neenbedankt.android-apt' // Assists in working with annotation processors for Android Studio.
+
+apply plugin: 'me.tatarka.retrolambda'
+retrolambda {
+    jvmArgs '-noverify'
+    oldJdk JAVA7_HOME
+    jdk JAVA8_HOME
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.vml.listofthings"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        dev {
+
+        }
+        prod {
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    devCompile project(path: ':data', configuration: 'debug')
+    prodCompile project(path: ':data', configuration: 'debug')
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+
+    //https://github.com/JakeWharton/butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    //https://github.com/ReactiveX/RxJava
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+
+    //https://github.com/google/dagger
+    compile 'com.google.dagger:dagger:2.0.1'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+    apt "com.google.dagger:dagger-compiler:2.0.1"
+    testApt 'com.google.dagger:dagger-compiler:2.0.1'
+
+    //https://github.com/square/picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+}
