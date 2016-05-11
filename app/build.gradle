@@ -46,6 +46,7 @@ dependencies {
     prodCompile project(path: ':data', configuration: 'debug')
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
 
     //https://github.com/JakeWharton/butterknife
     compile 'com.jakewharton:butterknife:7.0.1'

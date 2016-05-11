@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity implements ThingListView {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        setHomeAsUpEnabled(false);
         AppComponent.Builder.get(this).inject(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

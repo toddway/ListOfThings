@@ -15,7 +15,7 @@ public class TestDataModule extends DataModule {
     }
 
     @Override
-    ThingService provideThingService() {
+    public ThingService provideThingService() {
         return new MockThingService();
     }
 }

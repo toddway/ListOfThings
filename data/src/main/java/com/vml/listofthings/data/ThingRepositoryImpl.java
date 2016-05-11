@@ -22,8 +22,8 @@ public class ThingRepositoryImpl implements ThingRepository {
     @Override
     public Observable<ThingEntity[]> getThingList() {
         return thingService
-                .getThingList()
-                .compose(shelf.item("thingList").cacheThenNew(ThingEntity[].class));
+                .getThingList();
+                //.compose(shelf.item("thingList").cacheThenNew(ThingEntity[].class));
     }
 
     @Override

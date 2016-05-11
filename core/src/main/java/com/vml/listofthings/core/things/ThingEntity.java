@@ -23,4 +23,8 @@ public class ThingEntity {
         thingEntity.summary = summary;
         return thingEntity;
     }
+
+    public String getId() {
+        return id;
+    }
 }

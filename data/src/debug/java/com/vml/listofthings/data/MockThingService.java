@@ -2,8 +2,6 @@ package com.vml.listofthings.data;
 
 import com.vml.listofthings.core.things.ThingEntity;
 
-import java.util.Arrays;
-
 import rx.Observable;
 
 /**
@@ -16,10 +14,11 @@ public class MockThingService implements ThingService {
     }
 
     ThingEntity[] getMockThingList() {
-        return (ThingEntity[]) Arrays.asList(
-                ThingEntity.create("1", "title 1", "summary 1"),
-                ThingEntity.create("2", "title 2", "summary 2"),
-                ThingEntity.create("3", "title 3", "summary 3")
-        ).toArray();
+        int total = 300;
+        ThingEntity[] things = new ThingEntity[total];
+        for (int i = 0; i < total; i++) {
+            things[i] = ThingEntity.create("" + i, "title " + i, "summary " + i);
+        }
+        return things;
     }
 }
