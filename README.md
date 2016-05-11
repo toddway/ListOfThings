@@ -31,5 +31,6 @@ but could easily be connected to real sources using a retrofit implementation of
 1. Switchable Environments
 2. Retrofit ServiceFactory
 3. Rx Scheduler injection
+4. Git build integration
 
 
