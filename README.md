@@ -1,8 +1,5 @@
 # ListOfThings app
-This app is a contrived example to illustrate some best practices for Android architecture.  
-It displays a list of things retrieved from an external source and cached to locally to disk.  
-The external source implementation is currently just a mock object (see MockThingService), 
-but could easily be connected to real sources using a retrofit implementation of ThingService.
+This app is a contrived example to illustrate some best practices for Android architecture. It displays a list of things retrieved from an external source and cached to locally to disk.The external source implementation is currently just a mock object (see MockThingService), but could easily be connected to real sources using a retrofit implementation of ThingService.
 
   
  
