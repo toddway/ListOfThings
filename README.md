@@ -29,5 +29,6 @@ This app is a contrived example to illustrate some best practices for Android ar
 2. Retrofit ServiceFactory
 3. Rx Scheduler injection
 4. Git build integration
+5. 
 
 
