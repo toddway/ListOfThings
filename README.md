@@ -16,7 +16,7 @@ This app is a contrived example to illustrate some best practices for Android ar
 2. Example Interactors to isolate business use cases
 2. Example Repository and DataSource to demonstrate separation of caching, entity mapping, and external source integration
 2. Injectable Mock DataSource (MockThingService)
-9. Custom views instead of Fragments.  [Based on this](https://corner.squareup.com/2014/10/advocating-against-android-fragments.html) 
+9. Custom views instead of Fragments.  [Based on this.](https://corner.squareup.com/2014/10/advocating-against-android-fragments.html) 
 10. BasePresenter to separate presentation work from Views (e.g. manage view-related Rx subscriptions)
 10. AppCompat toolbar
 11. Coordinator layout example with quick-return toolbar
