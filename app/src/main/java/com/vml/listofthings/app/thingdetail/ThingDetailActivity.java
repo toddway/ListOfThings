@@ -1,22 +1,46 @@
 package com.vml.listofthings.app.thingdetail;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.vml.listofthings.R;
+import com.vml.listofthings.app.base.AppComponent;
 import com.vml.listofthings.app.base.BaseActivity;
+import com.vml.listofthings.core.things.ThingEntity;
 
-public class ThingDetailActivity extends BaseActivity {
+import javax.inject.Inject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class ThingDetailActivity extends BaseActivity implements ThingDetailView {
+
+    @Inject ThingDetailPresenter presenter;
+    @Bind(R.id.title) TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thing_detail);
-        setToolbarTitle("...");
+        ButterKnife.bind(this);
     }
 
-    public static void launch(Activity fromActivity, String id) {
-        //TODO: pass id
-        launch(fromActivity, ThingDetailActivity.class);
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        AppComponent.Builder.get(this).inject(this);
+        presenter.attachView(this, ThingDetailUtil.id(getIntent()));
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.detachView();
+        super.onDestroy();
+    }
+
+    @Override
+    public void populateDetails(ThingEntity thingEntity) {
+        setToolbarTitle(thingEntity.getTitle());
+        titleTextView.setText(thingEntity.getTitle());
     }
 }

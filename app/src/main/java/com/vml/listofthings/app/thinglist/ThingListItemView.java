@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vml.listofthings.R;
-import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
+import com.vml.listofthings.app.thingdetail.ThingDetailUtil;
 import com.vml.listofthings.core.things.ThingEntity;
 
 import butterknife.Bind;
@@ -58,7 +58,7 @@ public class ThingListItemView extends LinearLayout {
 
     @OnClick(R.id.list_item)
     public void onClick() {
-        ThingDetailActivity.launch((Activity) getContext(), thingEntity.getId());
+        ThingDetailUtil.launch((Activity) getContext(), thingEntity.getId());
         //Toast.makeText(getContext(), "item clicked", Toast.LENGTH_SHORT).show();
     }
 

@@ -35,4 +35,12 @@ public class ThingRepositoryTest {
             if (thingEntities != null) System.out.println(thingEntities[0].getTitle());
         }
     }
+
+    @Test
+    public void testGetThing() {
+        TestSubscriber<ThingEntity> subscriber = new TestSubscriber<>();
+        thingRepository.getThing("3").subscribe(subscriber);
+        subscriber.assertNoErrors();
+        subscriber.assertValueCount(1);
+    }
 }

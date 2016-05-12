@@ -22,12 +22,17 @@ public class ThingRepositoryImpl implements ThingRepository {
     @Override
     public Observable<ThingEntity[]> getThingList() {
         return thingService
-                .getThingList();
-                //.compose(shelf.item("thingList").cacheThenNew(ThingEntity[].class));
+                .getThingList()
+                .compose(shelf.item("thingList").cacheThenNew(ThingEntity[].class));
     }
 
     @Override
     public Observable<ThingEntity> getThing(String id) {
-        return null;
+        return getThingList()
+                .skipWhile(list -> list == null)
+                .flatMap(Observable::from)
+                .first(t -> {
+                    return id.equals(t.getId());
+                });
     }
 }

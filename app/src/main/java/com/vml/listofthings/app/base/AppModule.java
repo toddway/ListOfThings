@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.squareup.leakcanary.LeakCanary;
+import com.vml.listofthings.app.thingdetail.ThingDetailPresenter;
+import com.vml.listofthings.core.things.GetThingInteractor;
 import com.vml.listofthings.core.things.GetThingListInteractor;
 import com.vml.listofthings.data.ThingRepositoryImpl;
 import com.vml.listofthings.app.thinglist.ThingListPresenter;
@@ -30,5 +32,10 @@ public class AppModule {
     @Provides
     ThingListPresenter provideThingListPresenter(ThingRepositoryImpl thingRepository) {
         return new ThingListPresenter(new GetThingListInteractor(thingRepository));
+    }
+
+    @Provides
+    ThingDetailPresenter provideThingDetailPresenter(ThingRepositoryImpl thingRepository) {
+        return new ThingDetailPresenter(new GetThingInteractor(thingRepository));
     }
 }

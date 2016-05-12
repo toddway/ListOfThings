@@ -2,6 +2,7 @@ package com.vml.listofthings.app.base;
 
 import android.content.Context;
 
+import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
 import com.vml.listofthings.data.DataModule;
 import com.vml.listofthings.app.thinglist.MainActivity;
 
@@ -17,6 +18,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(MainActivity mainActivity);
+
+    void inject(ThingDetailActivity thingDetailActivity);
 
     final class Builder {
         static AppComponent appComponent;
