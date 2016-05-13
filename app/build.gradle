@@ -42,8 +42,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    devCompile project(path: ':data', configuration: 'debug')
-    prodCompile project(path: ':data', configuration: 'debug')
+    devCompile project(path: ':data', configuration: 'devDebug')
+    prodCompile project(path: ':data', configuration: 'devDebug')
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'

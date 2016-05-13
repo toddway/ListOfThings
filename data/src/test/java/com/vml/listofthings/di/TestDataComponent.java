@@ -1,6 +1,11 @@
-package com.vml.listofthings;
+package com.vml.listofthings.di;
 
+import com.vml.listofthings.ThingRepositoryTest;
 import com.vml.listofthings.data.DataModule;
+import com.vml.listofthings.data.MockThingService;
+import com.vml.listofthings.data.ThingService;
+
+import java.io.File;
 
 import javax.inject.Singleton;
 
@@ -19,7 +24,12 @@ public interface TestDataComponent {
         public static TestDataComponent build() {
             return DaggerTestDataComponent
                     .builder()
-                    .dataModule(new TestDataModule())
+                    .dataModule(new DataModule(new File("/tmp")) {
+                        @Override
+                        public ThingService provideThingService() {
+                            return new MockThingService();
+                        }
+                    })
                     .build();
         }
     }

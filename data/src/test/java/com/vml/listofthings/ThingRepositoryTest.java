@@ -3,6 +3,7 @@ package com.vml.listofthings;
 import com.toddway.shelf.Shelf;
 import com.vml.listofthings.core.things.ThingEntity;
 import com.vml.listofthings.data.ThingRepositoryImpl;
+import com.vml.listofthings.di.TestDataComponent;
 
 import org.junit.Before;
 import org.junit.Test;

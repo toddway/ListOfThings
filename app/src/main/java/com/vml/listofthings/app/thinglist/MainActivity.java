@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.vml.listofthings.R;
-import com.vml.listofthings.app.base.AppComponent;
+import com.vml.listofthings.app.base.App;
 import com.vml.listofthings.app.base.BaseActivity;
 import com.vml.listofthings.core.things.ThingEntity;
 
@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity implements ThingListView {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setHomeAsUpEnabled(false);
-        AppComponent.Builder.get(this).inject(this);
+        App.of(this).component().inject(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         presenter.attachView(this);

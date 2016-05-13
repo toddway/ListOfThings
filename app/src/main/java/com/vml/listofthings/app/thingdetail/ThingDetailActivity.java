@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.vml.listofthings.R;
-import com.vml.listofthings.app.base.AppComponent;
+import com.vml.listofthings.app.base.App;
 import com.vml.listofthings.app.base.BaseActivity;
 import com.vml.listofthings.core.things.ThingEntity;
 
@@ -28,7 +28,7 @@ public class ThingDetailActivity extends BaseActivity implements ThingDetailView
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        AppComponent.Builder.get(this).inject(this);
+        App.of(this).component().inject(this);
         presenter.attachView(this, ThingDetailUtil.id(getIntent()));
     }
 
