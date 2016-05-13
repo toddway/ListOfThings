@@ -2,7 +2,7 @@ package com.vml.listofthings.app.base;
 
 import com.vml.listofthings.core.things.GetThingInteractor;
 import com.vml.listofthings.core.things.GetThingListInteractor;
-import com.vml.listofthings.data.ThingRepositoryImpl;
+import com.vml.listofthings.data.things.ThingRepositoryImpl;
 
 import dagger.Module;
 import dagger.Provides;

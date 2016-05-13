@@ -1,6 +1,7 @@
 package com.vml.listofthings.app.thinglist;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,10 +16,11 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 
-public class MainActivity extends BaseActivity implements ThingListView {
+public class MainActivity extends BaseActivity implements ThingListView, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject ThingListPresenter presenter;
     @Bind(R.id.recycler_view) RecyclerView recyclerView;
+    @Bind(R.id.swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
     ThingListRecyclerAdapter recyclerAdapter = new ThingListRecyclerAdapter();
 
     @Override
@@ -34,6 +36,7 @@ public class MainActivity extends BaseActivity implements ThingListView {
         App.of(this).component().inject(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        swipeRefreshLayout.setOnRefreshListener(this);
         presenter.attachView(this);
     }
 
@@ -45,6 +48,12 @@ public class MainActivity extends BaseActivity implements ThingListView {
 
     @Override
     public void populateThings(List<ThingEntity> thingEntities) {
+        swipeRefreshLayout.setRefreshing(false);
         recyclerAdapter.setItems(thingEntities);
+    }
+
+    @Override
+    public void onRefresh() {
+        presenter.getNewThingList();
     }
 }

@@ -1,6 +1,9 @@
 package com.vml.listofthings.data;
 
 import com.vml.listofthings.core.things.ThingEntity;
+import com.vml.listofthings.data.things.ThingService;
+
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 
@@ -10,7 +13,9 @@ import rx.Observable;
 public class MockThingService implements ThingService {
     @Override
     public Observable<ThingEntity[]> getThingList() {
-        return Observable.fromCallable(this::getMockThingList);
+        return Observable
+                .fromCallable(this::getMockThingList)
+                .delay(2, TimeUnit.SECONDS);
     }
 
     ThingEntity[] getMockThingList() {

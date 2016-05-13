@@ -14,4 +14,8 @@ public class GetThingListInteractor {
     public Observable<ThingEntity[]> get() {
         return repository.getThingList();
     }
+
+    public Observable<ThingEntity[]> getNew() {
+        return repository.getNewThingList();
+    }
 }

@@ -1,9 +1,9 @@
 package com.vml.listofthings.di;
 
 import com.vml.listofthings.ThingRepositoryTest;
-import com.vml.listofthings.data.DataModule;
+import com.vml.listofthings.data.di.DataModule;
 import com.vml.listofthings.data.MockThingService;
-import com.vml.listofthings.data.ThingService;
+import com.vml.listofthings.data.things.ThingService;
 
 import java.io.File;
 

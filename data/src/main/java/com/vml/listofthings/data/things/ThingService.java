@@ -1,4 +1,4 @@
-package com.vml.listofthings.data;
+package com.vml.listofthings.data.things;
 
 import com.vml.listofthings.core.things.ThingEntity;
 

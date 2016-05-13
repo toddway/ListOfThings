@@ -9,4 +9,7 @@ public interface ThingRepository {
     Observable<ThingEntity[]> getThingList();
 
     Observable<ThingEntity> getThing(String id);
+
+    Observable<ThingEntity[]> getNewThingList();
+
 }

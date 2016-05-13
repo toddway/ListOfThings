@@ -27,6 +27,10 @@ public class ThingListPresenter extends BasePresenter<ThingListView> {
         addSubscription(getThingListInteractor.get().subscribe(this::presentThings, view::handleGlobalError));
     }
 
+    public void getNewThingList() {
+        addSubscription(getThingListInteractor.getNew().subscribe(this::presentThings, view::handleGlobalError));
+    }
+
     void presentThings(ThingEntity[] thingEntities) {
         view.populateThings(Arrays.asList(thingEntities));
     }

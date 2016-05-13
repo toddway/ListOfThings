@@ -2,7 +2,7 @@ package com.vml.listofthings.app.base;
 
 import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
 import com.vml.listofthings.app.thinglist.MainActivity;
-import com.vml.listofthings.data.DataModule;
+import com.vml.listofthings.data.di.DataModule;
 
 import javax.inject.Singleton;
 
