@@ -22,15 +22,15 @@ This app is a contrived example to illustrate some best practices for Android ar
 11. CoordinatorLayout scroll behavior with quick-return toolbar
 12. RecyclerView implementation
 13. LeakCanary
+14. Retrofit ServiceFactory
+15. Rx Scheduler injection
+16. Mocked delay (2 seconds) for Thing Service to demonstrate UI progress feedback
 
 
 
 
 ##  TODO:
 1. Switchable Environments
-2. Retrofit ServiceFactory
-3. Rx Scheduler injection
 4. Git build integration
-5. Mock delay and progress
 
 
