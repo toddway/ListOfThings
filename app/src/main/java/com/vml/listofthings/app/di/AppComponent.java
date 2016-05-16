@@ -1,4 +1,4 @@
-package com.vml.listofthings.app.base;
+package com.vml.listofthings.app.di;
 
 import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
 import com.vml.listofthings.app.thinglist.MainActivity;

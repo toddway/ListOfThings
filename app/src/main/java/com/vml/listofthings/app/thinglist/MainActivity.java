@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.vml.listofthings.R;
 import com.vml.listofthings.app.base.App;
@@ -21,6 +23,7 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
     @Inject ThingListPresenter presenter;
     @Bind(R.id.recycler_view) RecyclerView recyclerView;
     @Bind(R.id.swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.progress_bar) ProgressBar progressBar;
     ThingListRecyclerAdapter recyclerAdapter = new ThingListRecyclerAdapter();
 
     @Override
@@ -37,7 +40,10 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setRefreshing(true);
         presenter.attachView(this);
+        presenter.getThingList();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -49,7 +55,18 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
     @Override
     public void populateThings(List<ThingEntity> thingEntities) {
         swipeRefreshLayout.setRefreshing(false);
+        progressBar.setVisibility(View.GONE);
         recyclerAdapter.setItems(thingEntities);
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.vml.listofthings;
 
 import com.vml.listofthings.core.things.GetThingListInteractor;
 import com.vml.listofthings.core.things.ThingEntity;
+import com.vml.listofthings.data.DataUtil;
 import com.vml.listofthings.di.TestDomainComponent;
 
 import org.junit.Before;
@@ -17,10 +18,12 @@ import rx.observers.TestSubscriber;
 public class GetThingListInteractorTest {
 
     @Inject GetThingListInteractor getThingListInteractor;
+    @Inject DataUtil dataUtil;
 
     @Before
     public void beforeEach() {
         TestDomainComponent.Builder.build().inject(this);
+        dataUtil.clearCache();
     }
 
     @Test
@@ -31,7 +34,8 @@ public class GetThingListInteractorTest {
         subscriber.assertValueCount(2);
 
         for (ThingEntity[] thingEntities : subscriber.getOnNextEvents()) {
-            if (thingEntities != null) System.out.println(thingEntities[0].getTitle());
+            System.out.println(thingEntities);
         }
     }
+
 }

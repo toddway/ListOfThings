@@ -2,6 +2,10 @@ package com.vml.listofthings.app.base;
 
 import android.content.Context;
 
+import com.vml.listofthings.app.di.AppComponent;
+import com.vml.listofthings.app.di.AppModule;
+import com.vml.listofthings.app.di.DaggerAppComponent;
+import com.vml.listofthings.app.di.DomainModule;
 import com.vml.listofthings.data.MockThingService;
 import com.vml.listofthings.data.RxUtil;
 import com.vml.listofthings.data.di.DataModule;

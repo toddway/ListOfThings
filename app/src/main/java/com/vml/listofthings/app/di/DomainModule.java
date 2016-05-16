@@ -1,4 +1,4 @@
-package com.vml.listofthings.app.base;
+package com.vml.listofthings.app.di;
 
 import com.vml.listofthings.core.things.GetThingInteractor;
 import com.vml.listofthings.core.things.GetThingListInteractor;

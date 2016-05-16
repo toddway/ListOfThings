@@ -3,6 +3,8 @@ package com.vml.listofthings.app.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.vml.listofthings.app.di.AppComponent;
+
 /**
  * Created by tway on 5/12/16.
  */

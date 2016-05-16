@@ -10,4 +10,8 @@ import java.util.List;
  */
 public interface ThingListView extends BaseView {
     void populateThings(List<ThingEntity> thingEntities);
+
+    void showProgress();
+
+    void hideProgress();
 }

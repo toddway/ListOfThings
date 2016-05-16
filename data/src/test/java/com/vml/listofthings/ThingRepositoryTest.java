@@ -33,7 +33,7 @@ public class ThingRepositoryTest {
         subscriber.assertValueCount(2);
 
         for (ThingEntity[] thingEntities : subscriber.getOnNextEvents()) {
-            if (thingEntities != null) System.out.println(thingEntities[0].getTitle());
+            System.out.println(thingEntities);
         }
     }
 

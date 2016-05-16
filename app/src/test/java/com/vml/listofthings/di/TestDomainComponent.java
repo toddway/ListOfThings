@@ -2,9 +2,11 @@ package com.vml.listofthings.di;
 
 import com.vml.listofthings.GetThingInteractorTest;
 import com.vml.listofthings.GetThingListInteractorTest;
-import com.vml.listofthings.app.base.DomainModule;
+import com.vml.listofthings.app.di.DomainModule;
+import com.vml.listofthings.data.RxUtil;
 import com.vml.listofthings.data.di.DataModule;
 import com.vml.listofthings.data.MockThingService;
+import com.vml.listofthings.data.retrofit.ServiceFactory;
 import com.vml.listofthings.data.things.ThingService;
 
 import java.io.File;
@@ -30,9 +32,9 @@ public interface TestDomainComponent {
             return DaggerTestDomainComponent
                     .builder()
                     .domainModule(new DomainModule())
-                    .dataModule(new DataModule(new File("/tmp")) {
+                    .dataModule(new DataModule(new File("/tmp"), new RxUtil()) {
                         @Override
-                        public ThingService provideThingService() {
+                        public ThingService provideThingService(ServiceFactory serviceFactory) {
                             return new MockThingService();
                         }
                     })

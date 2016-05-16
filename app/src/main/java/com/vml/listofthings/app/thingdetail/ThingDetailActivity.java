@@ -17,6 +17,7 @@ public class ThingDetailActivity extends BaseActivity implements ThingDetailView
 
     @Inject ThingDetailPresenter presenter;
     @Bind(R.id.title) TextView titleTextView;
+    @Bind(R.id.summary) TextView summaryTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +43,6 @@ public class ThingDetailActivity extends BaseActivity implements ThingDetailView
     public void populateDetails(ThingEntity thingEntity) {
         setToolbarTitle(thingEntity.getTitle());
         titleTextView.setText(thingEntity.getTitle());
+        summaryTextView.setText(thingEntity.getSummary());
     }
 }

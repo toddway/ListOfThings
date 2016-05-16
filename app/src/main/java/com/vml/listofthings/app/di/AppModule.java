@@ -1,4 +1,4 @@
-package com.vml.listofthings.app.base;
+package com.vml.listofthings.app.di;
 
 import android.app.Application;
 import android.content.Context;
