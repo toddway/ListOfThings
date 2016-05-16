@@ -5,7 +5,7 @@ This app is a contrived example to illustrate some best practices for Android ar
  
 ## The app demonstrates the following:
 1. [Uncle Bob's Clean Artchitecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-2. Separate app, core, and data modules to enforce layered architecture 
+2. Separate app, core, and data modules to enforce independent layers 
 2. Dev and Prod product flavors to keep essential non-production code out of production builds. 
 3. Dagger 2 for dependency injection
 4. RxJava for asynchronous data operations
