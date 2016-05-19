@@ -2,14 +2,15 @@ package com.vml.listofthings.app.thinglist;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.vml.listofthings.R;
 import com.vml.listofthings.app.base.App;
 import com.vml.listofthings.app.base.BaseActivity;
+import com.vml.listofthings.app.base.RecyclerItemsAdapter;
 import com.vml.listofthings.core.things.ThingEntity;
 
 import java.util.List;
@@ -24,7 +25,8 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
     @Bind(R.id.recycler_view) RecyclerView recyclerView;
     @Bind(R.id.swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.progress_bar) ProgressBar progressBar;
-    ThingListRecyclerAdapter recyclerAdapter = new ThingListRecyclerAdapter();
+    @Bind(R.id.header) View header;
+    RecyclerItemsAdapter<ThingEntity> recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,23 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
         super.onPostCreate(savedInstanceState);
         setHomeAsUpEnabled(false);
         App.of(this).component().inject(this);
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerAdapter = new RecyclerItemsAdapter<ThingEntity>() {
+            @Override
+            public View createItemView(ViewGroup viewGroup) {
+                return ThingListItemView.inflate(viewGroup, false);
+            }
+
+            @Override
+            public void populateItemView(View itemView, ThingEntity item) {
+                ThingListItemView.of(itemView).populate(item);
+            }
+        };
+        recyclerAdapter.initWithQuickReturnHeader(header, recyclerView);
+
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setRefreshing(true);
+
         presenter.attachView(this);
         presenter.getThingList();
         progressBar.setVisibility(View.VISIBLE);
