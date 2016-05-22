@@ -15,8 +15,7 @@ import rx.observers.TestSubscriber;
 
 public class ThingRepositoryTest {
 
-    @Inject
-    ThingRepositoryImpl thingRepository;
+    @Inject ThingRepositoryImpl thingRepository;
     @Inject Shelf shelf;
 
     @Before

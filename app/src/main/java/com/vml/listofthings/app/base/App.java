@@ -13,11 +13,15 @@ public class App extends Application {
     private AppComponent component;
 
     public AppComponent component() {
-        if (component == null) component = AppComponentBuilder.build(this);
+        if (component == null) buildComponent(this);
         return component;
     }
 
     public static App of(Context context) {
         return (App) context.getApplicationContext();
+    }
+
+    public void buildComponent(Context context) {
+         component = AppComponentBuilder.build(context.getApplicationContext());
     }
 }

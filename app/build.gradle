@@ -17,8 +17,12 @@ android {
         applicationId "com.vml.listofthings"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 1
+        versionCode gitCommitCount()
         versionName "1.0"
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime()}\""
+        buildConfigField "String", "GIT_SHA", "\"${gitSha()}\""
+        buildConfigField "String", "GIT_BRANCH", "\"${gitBranch()}\""
+
     }
     buildTypes {
         release {
@@ -28,10 +32,12 @@ android {
     }
     productFlavors {
         dev {
-
+            applicationId "com.vml.thisofthings.dev"
+            versionName "${android.defaultConfig.versionName}-${buildTime()}-${gitBranch()}"
+            resValue "string", "app_name", "ListOfThingsDev"
         }
         prod {
-
+            resValue "string", "app_name", "ListOfThings"
         }
     }
     compileOptions {
@@ -71,4 +77,27 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+}
+
+import java.text.SimpleDateFormat
+
+def buildTime() {
+    def df = new SimpleDateFormat("yyyyMMddHHmm")
+    return df.format(new Date())
+}
+
+def gitCommitCount() {
+    return "git rev-list HEAD --first-parent --count".execute().text.trim().toInteger()
+}
+
+def gitTag() {
+    return "git describe --dirty=".execute().text.trim()
+}
+
+def gitSha() {
+    return "git rev-parse --short HEAD".execute().text.trim()
+}
+
+def gitBranch() {
+    return "git rev-parse --abbrev-ref HEAD".execute().text.trim()
 }

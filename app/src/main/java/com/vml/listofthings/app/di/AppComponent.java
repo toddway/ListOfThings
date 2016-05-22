@@ -1,5 +1,6 @@
 package com.vml.listofthings.app.di;
 
+import com.vml.listofthings.app.settings.SettingsActivity;
 import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
 import com.vml.listofthings.app.thinglist.MainActivity;
 import com.vml.listofthings.data.di.DataModule;
@@ -19,4 +20,5 @@ public interface AppComponent {
 
     void inject(ThingDetailActivity thingDetailActivity);
 
+    void inject(SettingsActivity settingsActivity);
 }

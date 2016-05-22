@@ -25,12 +25,13 @@ This app is a contrived example to illustrate some best practices for Android ar
 14. Retrofit ServiceFactory
 15. Rx Scheduler injection
 16. Mocked delay (2 seconds) for Thing Service to demonstrate UI progress feedback
+17. Switchable Environments
+18. Git build integration
+19. Global error handling
 
 
 
 
-##  TODO:
-1. Switchable Environments
-4. Git build integration
+
 
 

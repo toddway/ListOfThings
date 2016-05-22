@@ -1,11 +1,12 @@
-package com.vml.listofthings.data.retrofit;
+package com.vml.listofthings.core.environment;
+
+import java.util.List;
 
 public class Environment {
     public String key;
     public String label;
     public String baseServiceUrl;
     public String baseWebsiteUrl;
-    public int delayInMillis = 0;
 
 
     public String getKey() {
@@ -24,12 +25,8 @@ public class Environment {
         return label;
     }
 
-    public static Environment createStub(String key, String label, int delay) {
-        Environment e = new Environment();
-        e.key = key;
-        e.label = label;
-        e.delayInMillis = delay;
-        return e;
+    public boolean isMock() {
+        return getKey() == null || getKey().contains("mock");
     }
 
     public static Environment create(String key, String label, String baseServiceUrl) {
@@ -43,5 +40,20 @@ public class Environment {
         e.baseServiceUrl = baseServiceUrl;
         e.baseWebsiteUrl = baseWebsiteUrl;
         return e;
+    }
+
+    public static Environment get(List<Environment> list, String key) {
+        if (list == null || list.isEmpty()) {
+            return new Environment();
+        } else if (list.size() == 1) {
+            return list.get(0);
+        } else {
+            try {
+                for (Environment e : list)
+                    if (e.getKey().equals(key))
+                        return e;
+            } catch (Exception e) {}
+            return list.get(0); //if key not found, default to first environment
+        }
     }
 }

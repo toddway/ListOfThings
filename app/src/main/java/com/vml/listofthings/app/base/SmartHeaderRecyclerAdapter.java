@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RecyclerItemsAdapter<V> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class SmartHeaderRecyclerAdapter<V> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<V> items = new ArrayList<>();
     View headerView;
     static int HEADER_TYPE = 100;

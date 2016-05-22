@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">ListOfThings</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -91,4 +89,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="network_unavailable_error">Network is unavailable.  Try again later.</string>
 </resources>

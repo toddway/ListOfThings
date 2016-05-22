@@ -39,27 +39,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <RelativeLayout
+        <android.support.v7.widget.RecyclerView
+            android:visibility="visible"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.RecyclerView
-                android:visibility="visible"
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="84dp"
-                android:gravity="center"
-                android:background="#f5f5f5"
-                android:textColor="#CCC"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:elevation="4dp"
-                android:text="Quick Return Header"/>
-        </RelativeLayout>
-
+            android:layout_height="match_parent"
+            />
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar
@@ -75,10 +60,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_alert"
-        app:backgroundTint="#e5e5e5"
-        android:tint="#BBB"
-        app:layout_behavior="com.vml.listofthings.app.base.QuickReturnFooterBehavior"/>
+        android:src="@android:drawable/ic_menu_info_details"
+        android:tint="#FFF"
+        app:layout_behavior="com.vml.listofthings.app.base.SmartFooterBehavior"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

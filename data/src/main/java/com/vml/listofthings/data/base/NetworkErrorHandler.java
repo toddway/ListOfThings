@@ -1,7 +1,6 @@
-package com.vml.listofthings.data.retrofit;
+package com.vml.listofthings.data.base;
 
 import com.vml.listofthings.core.errors.InvalidSessionError;
-import com.vml.listofthings.core.errors.LoginFailedError;
 import com.vml.listofthings.core.errors.NetworkUnavailableError;
 import com.vml.listofthings.core.errors.ServerError;
 import com.vml.listofthings.core.errors.UnsupportedVersionError;
@@ -16,9 +15,7 @@ public class NetworkErrorHandler implements ErrorHandler {
             return new NetworkUnavailableError();
         } else if (error.getKind() == RetrofitError.Kind.HTTP) {
             int statusCode = error.getResponse().getStatus();
-            if (statusCode == 400) {
-                return new LoginFailedError();
-            }if (statusCode == 401 || statusCode == 403) {
+            if (statusCode == 401 || statusCode == 403) {
                 return new InvalidSessionError();
             } else if (statusCode == 410) {
                 return new UnsupportedVersionError();

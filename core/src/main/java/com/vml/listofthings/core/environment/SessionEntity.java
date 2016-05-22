@@ -1,4 +1,4 @@
-package com.vml.listofthings.core;
+package com.vml.listofthings.core.environment;
 
 /**
  * Created by tway on 8/21/15.

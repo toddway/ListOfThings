@@ -13,14 +13,14 @@ import android.view.animation.Interpolator;
 /**
  * Created by tway on 5/18/16.
  */
-public class QuickReturnFooterBehavior extends CoordinatorLayout.Behavior<View> {
+public class SmartFooterBehavior extends CoordinatorLayout.Behavior<View> {
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
     private int mDySinceDirectionChange;
     private boolean mIsShowing;
     private boolean mIsHiding;
 
 
-    public QuickReturnFooterBehavior(Context context, AttributeSet attrs) {
+    public SmartFooterBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

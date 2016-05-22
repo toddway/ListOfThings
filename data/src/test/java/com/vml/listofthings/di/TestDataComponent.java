@@ -1,10 +1,10 @@
 package com.vml.listofthings.di;
 
 import com.vml.listofthings.ThingRepositoryTest;
-import com.vml.listofthings.data.RxUtil;
+import com.vml.listofthings.data.base.RxUtil;
 import com.vml.listofthings.data.di.DataModule;
 import com.vml.listofthings.data.MockThingService;
-import com.vml.listofthings.data.retrofit.ServiceFactory;
+import com.vml.listofthings.data.base.ServiceFactory;
 import com.vml.listofthings.data.things.ThingService;
 
 import java.io.File;

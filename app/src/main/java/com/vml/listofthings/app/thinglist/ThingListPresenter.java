@@ -23,18 +23,21 @@ public class ThingListPresenter extends BasePresenter<ThingListView> {
     }
 
     public void getThingList() {
-        view.showProgress();
-        addSubscription(getThingListInteractor.get().subscribe(this::presentThings, view::handleGlobalError));
+        addSubscription(getThingListInteractor.get().subscribe(this::presentThings, this::handleError));
     }
 
     public void getNewThingList() {
-        view.showProgress();
-        addSubscription(getThingListInteractor.getNew().subscribe(this::presentThings, view::handleGlobalError));
+        addSubscription(getThingListInteractor.getNew().subscribe(this::presentThings, this::handleError));
     }
 
     void presentThings(ThingEntity[] thingEntities) {
         view.hideProgress();
         if (thingEntities != null) view.populateThings(Arrays.asList(thingEntities));
+    }
+
+    void handleError(Throwable throwable) {
+        view.hideProgress();
+        view.handleGlobalError(throwable);
     }
 
 }

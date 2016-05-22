@@ -4,10 +4,18 @@ import android.app.Application;
 import android.content.Context;
 
 import com.squareup.leakcanary.LeakCanary;
+import com.vml.listofthings.BuildConfig;
+import com.vml.listofthings.app.settings.SettingsPresenter;
 import com.vml.listofthings.app.thingdetail.ThingDetailPresenter;
 import com.vml.listofthings.app.thinglist.ThingListPresenter;
+import com.vml.listofthings.core.environment.GetEnvironmentInteractor;
+import com.vml.listofthings.core.environment.GetEnvironmentsInteractor;
+import com.vml.listofthings.core.environment.SetEnvironmentInteractor;
 import com.vml.listofthings.core.things.GetThingInteractor;
 import com.vml.listofthings.core.things.GetThingListInteractor;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,6 +36,12 @@ public class AppModule {
         } catch (Exception e) {}
     }
 
+    @Provides @Singleton
+    @Named("aboutSummary")
+    String provideAboutSummary() {
+        return BuildConfig.VERSION_NAME + " (" + BuildConfig.GIT_SHA + ")";
+    }
+
     @Provides
     ThingListPresenter provideThingListPresenter(GetThingListInteractor getThingListInteractor) {
         return new ThingListPresenter(getThingListInteractor);
@@ -36,5 +50,10 @@ public class AppModule {
     @Provides
     ThingDetailPresenter provideThingDetailPresenter(GetThingInteractor getThingInteractor) {
         return new ThingDetailPresenter(getThingInteractor);
+    }
+
+    @Provides
+    SettingsPresenter provideSettingsPresenter(GetEnvironmentInteractor getEnvironmentInteractor, SetEnvironmentInteractor setEnvironmentInteractor, GetEnvironmentsInteractor getEnvironmentsInteractor) {
+        return new SettingsPresenter(getEnvironmentsInteractor, setEnvironmentInteractor, getEnvironmentInteractor);
     }
 }

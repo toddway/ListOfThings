@@ -59,7 +59,6 @@ public class ThingListItemView extends LinearLayout {
     @OnClick(R.id.list_item)
     public void onClick() {
         ThingDetailUtil.launch((Activity) getContext(), thingEntity.getId());
-        //Toast.makeText(getContext(), "item clicked", Toast.LENGTH_SHORT).show();
     }
 
 }

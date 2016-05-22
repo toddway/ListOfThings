@@ -1,4 +1,4 @@
-package com.vml.listofthings.data;
+package com.vml.listofthings.data.base;
 
 import com.vml.listofthings.core.errors.InvalidSessionError;
 

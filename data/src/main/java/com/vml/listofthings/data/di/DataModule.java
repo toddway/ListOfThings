@@ -1,20 +1,22 @@
 package com.vml.listofthings.data.di;
 
 import com.toddway.shelf.Shelf;
-import com.vml.listofthings.data.DataUtil;
-import com.vml.listofthings.data.RxUtil;
-import com.vml.listofthings.data.retrofit.Environment;
-import com.vml.listofthings.data.retrofit.ServiceFactory;
+import com.vml.listofthings.data.base.DataUtil;
+import com.vml.listofthings.core.environment.Environment;
+import com.vml.listofthings.data.base.RxUtil;
+import com.vml.listofthings.data.base.ServiceFactory;
 import com.vml.listofthings.data.things.ThingRepositoryImpl;
 import com.vml.listofthings.data.things.ThingService;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit.RestAdapter;
 
 /**
  * Created by tway on 5/10/16.
@@ -22,12 +24,19 @@ import dagger.Provides;
 @Module
 public class DataModule {
 
-    File cacheDir;
-    RxUtil rxUtil;
+    protected File cacheDir;
+    protected RxUtil rxUtil;
 
     public DataModule(File cacheDir, RxUtil rxUtil) {
         this.cacheDir = cacheDir;
         this.rxUtil = rxUtil;
+    }
+
+    @Provides
+    public List<Environment> provideEnvironments() {
+        return Arrays.asList(
+                Environment.create("stage", "Stage", "https://example.com", "https://example.com")
+        );
     }
 
     @Provides
@@ -36,14 +45,13 @@ public class DataModule {
     }
 
     @Provides @Singleton
-    DataUtil provideDataUtil(Shelf shelf) {
-        return new DataUtil(rxUtil, shelf);
+    public DataUtil provideDataUtil(Shelf shelf, List<Environment> environments) {
+        return new DataUtil(rxUtil, shelf, environments);
     }
 
     @Provides
-    protected ServiceFactory provideServiceFactory(DataUtil dataUtil) {
-        Environment e = Environment.create("stage", "Stage", "https://example.com", "https://example.com");
-        return new ServiceFactory(Arrays.asList(e), dataUtil);
+    public ServiceFactory provideServiceFactory(DataUtil dataUtil) {
+        return new ServiceFactory(dataUtil, RestAdapter.LogLevel.NONE);
     }
 
 

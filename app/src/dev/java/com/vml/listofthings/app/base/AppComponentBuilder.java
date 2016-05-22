@@ -6,11 +6,8 @@ import com.vml.listofthings.app.di.AppComponent;
 import com.vml.listofthings.app.di.AppModule;
 import com.vml.listofthings.app.di.DaggerAppComponent;
 import com.vml.listofthings.app.di.DomainModule;
-import com.vml.listofthings.data.MockThingService;
-import com.vml.listofthings.data.RxUtil;
-import com.vml.listofthings.data.di.DataModule;
-import com.vml.listofthings.data.retrofit.ServiceFactory;
-import com.vml.listofthings.data.things.ThingService;
+import com.vml.listofthings.data.DevDataModule;
+import com.vml.listofthings.data.base.RxUtil;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -24,12 +21,12 @@ public class AppComponentBuilder {
                 .builder()
                 .appModule(new AppModule(context))
                 .domainModule(new DomainModule())
-                .dataModule(new DataModule(context.getCacheDir(), new RxUtil(Schedulers.newThread(), AndroidSchedulers.mainThread())){
-                    @Override
-                    public ThingService provideThingService(ServiceFactory serviceFactory) {
-                        return new MockThingService();
-                    }
-                })
+                .dataModule(
+                        new DevDataModule(
+                                context.getCacheDir(),
+                                new RxUtil(Schedulers.newThread(), AndroidSchedulers.mainThread())
+                        )
+                )
                 .build();
     }
 }

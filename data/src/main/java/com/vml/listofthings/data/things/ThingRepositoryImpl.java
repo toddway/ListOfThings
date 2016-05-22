@@ -3,7 +3,7 @@ package com.vml.listofthings.data.things;
 import com.toddway.shelf.Shelf;
 import com.vml.listofthings.core.things.ThingEntity;
 import com.vml.listofthings.core.things.ThingRepository;
-import com.vml.listofthings.data.DataUtil;
+import com.vml.listofthings.data.base.DataUtil;
 
 import rx.Observable;
 
@@ -27,7 +27,7 @@ public class ThingRepositoryImpl implements ThingRepository {
         return thingService
                 .getThingList()
                 .compose(shelf.item("thingList").cacheThenNew(ThingEntity[].class))
-                .compose(dataUtil.getRxUtil().applyCommonSchedulers());
+                .compose(dataUtil.rxUtil().applyCommonSchedulers());
     }
 
     @Override
@@ -43,6 +43,6 @@ public class ThingRepositoryImpl implements ThingRepository {
         return thingService
                 .getThingList()
                 .compose(shelf.item("thingList").newOnly(ThingEntity[].class))
-                .compose(dataUtil.getRxUtil().applyCommonSchedulers());
+                .compose(dataUtil.rxUtil().applyCommonSchedulers());
     }
 }
