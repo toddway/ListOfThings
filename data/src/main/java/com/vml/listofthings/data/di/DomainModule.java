@@ -1,4 +1,4 @@
-package com.vml.listofthings.app.di;
+package com.vml.listofthings.data.di;
 
 import com.vml.listofthings.core.environment.GetEnvironmentInteractor;
 import com.vml.listofthings.core.environment.GetEnvironmentsInteractor;

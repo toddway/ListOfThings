@@ -5,7 +5,7 @@ import android.content.Context;
 import com.vml.listofthings.app.di.AppComponent;
 import com.vml.listofthings.app.di.AppModule;
 import com.vml.listofthings.app.di.DaggerAppComponent;
-import com.vml.listofthings.app.di.DomainModule;
+import com.vml.listofthings.data.di.DomainModule;
 import com.vml.listofthings.data.DevDataModule;
 import com.vml.listofthings.data.base.RxUtil;
 

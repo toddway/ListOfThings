@@ -3,7 +3,7 @@ package com.vml.listofthings;
 import com.vml.listofthings.core.things.GetThingListInteractor;
 import com.vml.listofthings.core.things.ThingEntity;
 import com.vml.listofthings.data.base.DataUtil;
-import com.vml.listofthings.di.TestDomainComponent;
+import com.vml.listofthings.di.TestDataComponent;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class GetThingListInteractorTest {
 
     @Before
     public void beforeEach() {
-        TestDomainComponent.Builder.build().inject(this);
+        TestDataComponent.Builder.build().inject(this);
         dataUtil.clearShelf();
     }
 

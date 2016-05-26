@@ -3,7 +3,9 @@ package com.vml.listofthings.app.di;
 import com.vml.listofthings.app.settings.SettingsActivity;
 import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
 import com.vml.listofthings.app.thinglist.MainActivity;
+import com.vml.listofthings.app.thinglist.ThingListItemView;
 import com.vml.listofthings.data.di.DataModule;
+import com.vml.listofthings.data.di.DomainModule;
 
 import javax.inject.Singleton;
 
@@ -21,4 +23,6 @@ public interface AppComponent {
     void inject(ThingDetailActivity thingDetailActivity);
 
     void inject(SettingsActivity settingsActivity);
+
+    void inject(ThingListItemView thingListItemView);
 }

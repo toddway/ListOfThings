@@ -39,7 +39,8 @@ public class ThingRepositoryTest {
     @Test
     public void testGetThing() {
         TestSubscriber<ThingEntity> subscriber = new TestSubscriber<>();
-        thingRepository.getThing("3").subscribe(subscriber);
+        ThingEntity[] things = thingRepository.getNewThingList().toBlocking().first();
+        thingRepository.getThing(things[3].getId()).subscribe(subscriber);
         subscriber.assertNoErrors();
         subscriber.assertValueCount(1);
     }
