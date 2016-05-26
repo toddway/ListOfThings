@@ -1,7 +1,7 @@
 # ListOfThings app
 This app is a contrived example to illustrate some best practices for Android architecture. It displays a list of things retrieved from an external source and cached to locally to disk.The external source implementation is currently just a mock object (see MockThingService), but could easily be connected to real sources using a retrofit implementation of ThingService.
 
-
+<img src="art/list.gif" style="width:210px;border:1px solid #eeeeee;padding-right:20px"/>
  
 ## The app demonstrates the following:
 1. [Uncle Bob's Clean Artchitecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
@@ -29,6 +29,25 @@ This app is a contrived example to illustrate some best practices for Android ar
 18. Git build integration
 19. Global error handling
 
+<img src="art/settings.gif" style="width:210px;border:1px solid #eeeeee;margin-left:20px"/>
+
+
+License
+-------
+
+    Copyright 2015 Todd Way
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 
 
