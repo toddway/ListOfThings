@@ -7,10 +7,10 @@ This app is a contrived example to illustrate some best practices for Android ar
 1. [Uncle Bob's Clean Artchitecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 2. Separate app, core, and data modules to enforce independent layers 
 2. Dev and Prod product flavors to keep essential non-production code out of production builds. 
-3. Dagger 2 for dependency injection
-4. RxJava for asynchronous data operations
+3. [Dagger 2](https://engineering.circle.com/instrumentation-testing-with-dagger-mockito-and-espresso-f07b5f62a85b#.ssgoilb3y) for dependency injection
+4. [RxJava](http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/) for asynchronous data operations
 5. Shelf for basic object disk caching
-6. Retrofit for web service integration
+6. [Retrofit](http://square.github.io/retrofit/) for web service integration
 7. Junit and Mockito for unit tests
 8. Retrolambda for Java 8 lambda support
 2. Example Interactors to isolate business use cases
@@ -20,7 +20,7 @@ This app is a contrived example to illustrate some best practices for Android ar
 10. BasePresenter to separate presentation work from Views (e.g. manage view-related Rx subscriptions)
 10. AppCompat Toolbar (replaces ActionBar)
 11. CoordinatorLayout scroll behavior with quick-return toolbar
-12. RecyclerView implementation
+12. Generic RecyclerView implementation
 13. LeakCanary
 14. Retrofit ServiceFactory
 15. Rx Scheduler injection
