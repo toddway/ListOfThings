@@ -95,7 +95,13 @@ public class ThingListLayout extends GridRecyclerView {
         recyclerAdapter.setItems(items);
     }
 
-//    View headerView;
+    public boolean toggleGridView() {
+        boolean togglingOn = getSpanCount() == 1;
+        setSpanCount(togglingOn ? 3 : 1);
+        return togglingOn;
+    }
+
+    //    View headerView;
 //    public void attachQuickReturnHeader(final View headerView) {
 //        this.headerView = headerView;
 //        addOnScrollListener(new RecyclerView.OnScrollListener() {

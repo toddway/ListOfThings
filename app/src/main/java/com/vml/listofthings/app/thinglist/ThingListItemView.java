@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.vml.listofthings.R;
@@ -20,7 +20,7 @@ import butterknife.OnClick;
 /**
  * Created by tway on 5/10/16.
  */
-public class ThingListItemView extends LinearLayout {
+public class ThingListItemView extends FrameLayout {
 
     @Bind(R.id.summary) TextView summaryTextView;
     @Bind(R.id.title) TextView titleTextView;

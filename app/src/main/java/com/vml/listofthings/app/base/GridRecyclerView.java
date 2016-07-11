@@ -53,15 +53,20 @@ public class GridRecyclerView extends RecyclerView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        setColumnCount(1);
+        setLayoutManager(new GridLayoutManager(getContext(), 1));
         if (!isInEditMode()) {
             setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(), R.anim.grid_layout_animation));
             startLayoutAnimation();
         }
     }
 
-    public void setColumnCount(int count) {
-        setLayoutManager(new GridLayoutManager(getContext(), count));
+    public void setSpanCount(int count) {
+        ((GridLayoutManager) getLayoutManager()).setSpanCount(count);
+        getAdapter().notifyItemRangeChanged(0, getAdapter().getItemCount());
+    }
+
+    public int getSpanCount() {
+        return ((GridLayoutManager) getLayoutManager()).getSpanCount();
     }
 
     @Override

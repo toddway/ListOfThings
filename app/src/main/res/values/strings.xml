@@ -93,4 +93,5 @@
     <string name="network_unavailable_error">Network is unavailable.  Try again later.</string>
     <string name="undo">Undo</string>
     <string name="deleted_item">Deleted - LABEL</string>
+    <string name="toggle_view_mode">Toggle View Mode</string>
 </resources>

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -46,6 +48,23 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
         presenter.attachView(this);
         presenter.getThingList();
         progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_toggle_view_mode:
+                boolean isToggleingOn = thingListLayout.toggleGridView();
+                item.setIcon(isToggleingOn ? R.drawable.ic_view_stream_white_24px : R.drawable.ic_view_module_white_24px);
+                break;
+        }
+        return true;
     }
 
     @Override

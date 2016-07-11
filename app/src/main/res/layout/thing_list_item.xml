@@ -4,34 +4,40 @@
                                                       android:orientation="vertical"
                                                       android:layout_width="match_parent"
                                                       android:layout_height="wrap_content"
-                                                      android:background="#FFFFFF"
+
+
                                                       >
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/list_item"
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:padding="16dp">
-        <TextView
-            android:id="@+id/title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="teslakdjf"/>
-        <TextView
-            android:id="@+id/summary"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="asfdfadf"/>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DDD"/>
+            android:orientation="vertical"
+            android:id="@+id/list_item"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="teslakdjf"/>
+            <TextView
+                android:id="@+id/summary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="asfdfadf"/>
+        </LinearLayout>
+    </FrameLayout>
 
 
 </com.vml.listofthings.app.thinglist.ThingListItemView>

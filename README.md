@@ -28,7 +28,7 @@ This app is a contrived example to illustrate some best practices for Android ar
 17. Switchable Environments
 18. Git build integration
 19. Global error handling
-20. List animations for refresh, remove, and undo
+20. List animations for refresh, remove, undo, and toggle view mode
 
 <img src="art/settings.gif" style="width:210px;border:1px solid #eeeeee"/>
 
