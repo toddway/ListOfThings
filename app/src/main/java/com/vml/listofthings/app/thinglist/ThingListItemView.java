@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.vml.listofthings.R;
 import com.vml.listofthings.app.thingdetail.ThingDetailUtil;
 import com.vml.listofthings.core.things.ThingEntity;
@@ -22,8 +24,14 @@ import butterknife.OnClick;
  */
 public class ThingListItemView extends FrameLayout {
 
-    @Bind(R.id.summary) TextView summaryTextView;
-    @Bind(R.id.title) TextView titleTextView;
+    @Bind(R.id.summary_tall) TextView summaryTall;
+    @Bind(R.id.title_tall) TextView titleTall;
+    @Bind(R.id.image_tall) ImageView imageTall;
+    @Bind(R.id.summary_wide) TextView summaryWide;
+    @Bind(R.id.title_wide) TextView titleWide;
+    @Bind(R.id.image_wide) ImageView imageWide;
+    @Bind(R.id.layout_tall) ViewGroup layoutTall;
+    @Bind(R.id.layout_wide) ViewGroup layoutWide;
     ThingEntity thingEntity;
 
     public ThingListItemView(Context context) {
@@ -52,13 +60,26 @@ public class ThingListItemView extends FrameLayout {
 
     public void populate(ThingEntity thingEntity) {
         this.thingEntity = thingEntity;
-        titleTextView.setText(thingEntity.getTitle());
-        summaryTextView.setText(thingEntity.getSummary());
+        titleTall.setText(thingEntity.getTitle());
+        titleWide.setText(thingEntity.getTitle());
+        summaryTall.setText(thingEntity.getSummary());
+        summaryWide.setText(thingEntity.getSummary());
+        Picasso.with(getContext()).load("http://lorempixel.com/400/200/?" + thingEntity.getId()).into(imageTall);
+        Picasso.with(getContext()).load("http://lorempixel.com/400/200/?" + thingEntity.getId()).into(imageWide);
     }
 
-    @OnClick(R.id.list_item)
+    @OnClick(R.id.item_frame)
     public void onClick() {
         ThingDetailUtil.launch((Activity) getContext(), thingEntity.getId());
     }
 
+    public void setSize(boolean isTall) {
+        if (isTall) {
+            layoutTall.setVisibility(VISIBLE);
+            layoutWide.setVisibility(GONE);
+        } else {
+            layoutTall.setVisibility(GONE);
+            layoutWide.setVisibility(VISIBLE);
+        }
+    }
 }

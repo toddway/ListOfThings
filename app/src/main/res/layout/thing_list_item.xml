@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.vml.listofthings.app.thinglist.ThingListItemView xmlns:android="http://schemas.android.com/apk/res/android"
-                                                      xmlns:tools="http://schemas.android.com/tools"
                                                       android:orientation="vertical"
                                                       android:layout_width="match_parent"
-                                                      android:layout_height="wrap_content"
-
-
-                                                      >
+                                                      android:layout_height="wrap_content">
     <FrameLayout
+        android:id="@+id/item_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -15,29 +12,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp"
-        android:layout_marginEnd="4dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/list_item"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackground"
-            android:padding="16dp">
-            <TextView
-                android:id="@+id/title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="teslakdjf"/>
-            <TextView
-                android:id="@+id/summary"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="asfdfadf"/>
-        </LinearLayout>
+        android:layout_marginEnd="4dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground">
+        <include layout="@layout/thing_list_item_wide" android:id="@+id/layout_wide"/>
+        <include layout="@layout/thing_list_item_tall" android:id="@+id/layout_tall"/>
     </FrameLayout>
-
 
 </com.vml.listofthings.app.thinglist.ThingListItemView>

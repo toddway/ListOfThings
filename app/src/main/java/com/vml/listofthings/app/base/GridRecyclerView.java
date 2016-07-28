@@ -1,20 +1,5 @@
 package com.vml.listofthings.app.base;
 
-/*
- * Copyright (C) 2014 Freddie (Musenkishi) Lust-Hed
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -27,15 +12,7 @@ import android.view.animation.GridLayoutAnimationController;
 
 import com.vml.listofthings.R;
 
-/**
- * An extension of RecyclerView, focused more on resembling a GridView.
- * Unlike {@link android.support.v7.widget.RecyclerView}, this view can handle
- * {@code <gridLayoutAnimation>} as long as you provide it a
- * {@link android.support.v7.widget.GridLayoutManager} in
- * {@code setLayoutManager(LayoutManager layout)}.
- *
- * Created by Freddie (Musenkishi) Lust-Hed.
- */
+
 public class GridRecyclerView extends RecyclerView {
 
     public GridRecyclerView(Context context) {

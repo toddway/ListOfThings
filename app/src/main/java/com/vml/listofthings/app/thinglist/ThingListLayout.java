@@ -18,12 +18,14 @@ import java.util.List;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
+
 /**
  * Created by tway on 7/11/16.
  */
-public class ThingListLayout extends GridRecyclerView {
+public class ThingListLayout extends GridRecyclerView implements PinchSpreadHelper.Listener {
     @BindString(R.string.deleted_item) String deletedItemString;
     BaseRecyclerAdapter<ThingEntity> recyclerAdapter;
+    PinchSpreadHelper pinchSpreadHelper;
 
     public ThingListLayout(Context context) {
         super(context);
@@ -42,7 +44,10 @@ public class ThingListLayout extends GridRecyclerView {
         super.onFinishInflate();
         ButterKnife.bind(this);
         initAdapter();
-        initItemTouchHelper();
+        if (!isInEditMode()) {
+            initItemTouchHelper();
+            pinchSpreadHelper = new PinchSpreadHelper(this, this);
+        }
     }
 
     private void initAdapter() {
@@ -55,12 +60,13 @@ public class ThingListLayout extends GridRecyclerView {
             @Override
             public void populateItemView(View itemView, ThingEntity item, int adapterPosition) {
                 ThingListItemView.of(itemView).populate(item);
+                ThingListItemView.of(itemView).setSize(getSpanCount() > 1);
             }
         };
     }
 
     private void initItemTouchHelper() {
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
@@ -77,11 +83,8 @@ public class ThingListLayout extends GridRecyclerView {
         final int position = recyclerAdapter.findAdapterPosition(thing);
         recyclerAdapter.removeItem(position);
         Snackbar.make(this,  deletedItemString.replace("LABEL", thing.getTitle()), Snackbar.LENGTH_LONG)
-                .setAction(R.string.undo, new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        addItem(thing, position);
-                    }
+                .setAction(R.string.undo, v -> {
+                    addItem(thing, position);
                 })
                 .show();
     }
@@ -95,28 +98,23 @@ public class ThingListLayout extends GridRecyclerView {
         recyclerAdapter.setItems(items);
     }
 
-    public boolean toggleGridView() {
-        boolean togglingOn = getSpanCount() == 1;
-        setSpanCount(togglingOn ? 3 : 1);
-        return togglingOn;
+    public void showMore() {
+        if (getSpanCount() == 1) setSpanCount(3);
+        else if (getSpanCount() == 3) setSpanCount(4);
     }
 
-    //    View headerView;
-//    public void attachQuickReturnHeader(final View headerView) {
-//        this.headerView = headerView;
-//        addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                if (headerView != null) applyYTranslation(headerView, dy);
-//                super.onScrolled(recyclerView, dx, dy);
-//            }
-//        });
-//    }
-//
-//    private static void applyYTranslation(View headerView, int dy) {
-//        float newY = headerView.getTranslationY() - dy;
-//        if (newY > 0) newY = 0; //anchor top of header
-//        else if (newY <= -headerView.getHeight()) newY = -headerView.getHeight(); //anchor bottom of header
-//        headerView.setTranslationY(newY);
-//    }
+    public void showLess() {
+        if (getSpanCount() == 4) setSpanCount(3);
+        else if (getSpanCount() == 3) setSpanCount(1);
+    }
+
+    @Override
+    public void onPinch() {
+        showMore();
+    }
+
+    @Override
+    public void onSpread() {
+        showLess();
+    }
 }

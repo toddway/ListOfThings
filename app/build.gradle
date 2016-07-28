@@ -34,7 +34,7 @@ android {
         dev {
             applicationId "com.vml.thisofthings.dev"
             versionName "${android.defaultConfig.versionName}-${buildTime()}-${gitBranch()}"
-            resValue "string", "app_name", "ListOfThingsDev"
+            resValue "string", "app_name", "ListOfThings"
         }
         prod {
             resValue "string", "app_name", "ListOfThings"

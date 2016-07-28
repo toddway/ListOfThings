@@ -59,12 +59,20 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_toggle_view_mode:
-                boolean isToggleingOn = thingListLayout.toggleGridView();
-                item.setIcon(isToggleingOn ? R.drawable.ic_view_stream_white_24px : R.drawable.ic_view_module_white_24px);
-                break;
+            case R.id.action_toggle_view_mode: toggleViewMode(item); break;
         }
         return true;
+    }
+
+    private void toggleViewMode(MenuItem item) {
+        boolean showMore = thingListLayout.getSpanCount() == 1;
+        if (showMore) {
+            item.setIcon(R.drawable.ic_view_stream_white_24px);
+            thingListLayout.setSpanCount(3);
+        } else {
+            item.setIcon(R.drawable.ic_view_module_white_24px);
+            thingListLayout.setSpanCount(1);
+        }
     }
 
     @Override
