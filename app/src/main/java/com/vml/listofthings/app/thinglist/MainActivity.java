@@ -3,6 +3,7 @@ package com.vml.listofthings.app.thinglist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
@@ -29,6 +30,7 @@ public class MainActivity extends BaseActivity implements ThingListView, SwipeRe
     @Bind(R.id.swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.progress_bar) ProgressBar progressBar;
     @Bind(R.id.recycler_view) ThingListLayout thingListLayout;
+    @Bind(R.id.app_bar) AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

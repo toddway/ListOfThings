@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.vml.listofthings.R;
-import com.vml.listofthings.app.thingdetail.ThingDetailUtil;
+import com.vml.listofthings.app.thingdetail.ThingDetailActivity;
 import com.vml.listofthings.core.things.ThingEntity;
 
 import butterknife.Bind;
@@ -64,13 +64,13 @@ public class ThingListItemView extends FrameLayout {
         titleWide.setText(thingEntity.getTitle());
         summaryTall.setText(thingEntity.getSummary());
         summaryWide.setText(thingEntity.getSummary());
-        Picasso.with(getContext()).load("http://lorempixel.com/400/200/?" + thingEntity.getId()).into(imageTall);
-        Picasso.with(getContext()).load("http://lorempixel.com/400/200/?" + thingEntity.getId()).into(imageWide);
+        Picasso.with(getContext()).load("http://lorempixel.com/400/600/").into(imageTall);
+        Picasso.with(getContext()).load("http://lorempixel.com/400/600/").into(imageWide);
     }
 
     @OnClick(R.id.item_frame)
-    public void onClick() {
-        ThingDetailUtil.launch((Activity) getContext(), thingEntity.getId());
+    public void onClick(View view) {
+        ThingDetailActivity.launch((Activity) getContext(), thingEntity.getId(), view);
     }
 
     public void setSize(boolean isTall) {

@@ -5,14 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".app.thinglist.MainActivity">
+    tools:context=".app.thinglist.MainActivity"
+    android:background="#F5f5f5">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="false"
         android:theme="@style/AppTheme.AppBarOverlay">
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

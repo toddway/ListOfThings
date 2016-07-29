@@ -1,9 +1,7 @@
 package com.vml.listofthings.app.di;
 
-import android.app.Application;
 import android.content.Context;
 
-import com.squareup.leakcanary.LeakCanary;
 import com.vml.listofthings.BuildConfig;
 import com.vml.listofthings.app.settings.SettingsPresenter;
 import com.vml.listofthings.app.thingdetail.ThingDetailPresenter;
@@ -31,9 +29,9 @@ public class AppModule {
     public AppModule(Context context) {
         this.appContext = context;
 
-        try { // this fails when isInEditMode, but we don't care so we wrap in try/catch
-            LeakCanary.install((Application) appContext.getApplicationContext());
-        } catch (Exception e) {}
+//        try { // this fails when isInEditMode, but we don't care so we wrap in try/catch
+//            LeakCanary.install((Application) appContext.getApplicationContext());
+//        } catch (Exception e) {}
     }
 
     @Provides @Singleton
