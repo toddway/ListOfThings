@@ -10,7 +10,7 @@ retrolambda {
 }
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.3"
 
     defaultConfig {
@@ -50,9 +50,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     devCompile project(path: ':data', configuration: 'devDebug')
     prodCompile project(path: ':data', configuration: 'devDebug')
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:design:24.0.0'
 
     //https://github.com/JakeWharton/butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
@@ -76,9 +76,9 @@ dependencies {
 
     compile 'me.everything:overscroll-decor-android:1.0.3'
 
-    //debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    //releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    //testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }
 
 import java.text.SimpleDateFormat

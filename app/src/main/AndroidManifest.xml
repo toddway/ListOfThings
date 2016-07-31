@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".app.thingdetail.ThingDetailActivity">
+        <activity
+            android:name=".app.thingdetail.ThingDetailActivity"
+            android:theme="@style/AppTheme.Transparent">
         </activity>
         <activity android:name=".app.settings.SettingsActivity">
         </activity>

@@ -1,34 +1,39 @@
 # ListOfThings app
-This app is a contrived example to illustrate some best practices for Android architecture. It displays a list of things retrieved from an external source and cached to locally to disk.The external source implementation is currently just a mock object (see MockThingService), but could easily be connected to real sources using a retrofit implementation of ThingService.
+This app is a contrived example to illustrate some recommended techniques for Android. It displays a list of things retrieved from an external source and cached to locally to disk.The external source implementation is currently just a mock object (see MockThingService), but could easily be connected to real sources using a retrofit implementation of ThingService.
 
-<img src="art/list.gif" style="width:210px;border:1px solid #eeeeee"/>
+<img src="art/list2.gif" style="width:210px;border:1px solid #eeeeee"/>
  
-## The app demonstrates the following:
+## The app demonstrates the following UI techniques: 
+ 20. List animations for refresh, remove, undo, and toggle view modes
+ 21. Shared element transitions between Activities - updated implementation of [this](https://github.com/toddway/MaterialTransitions)
+ 10. CollapsibleToolbarLayout with CoordinatorLayout
+ 22. Overscroll to return to previous Activity
+ 23. translucent system bars
+ 
+## These architectural techniques:
 1. [Uncle Bob's Clean Artchitecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) with [SOLID principles](http://blog.cleancoder.com/uncle-bob/2016/01/04/ALittleArchitecture.html)
 2. Separate app, core, and data modules to enforce independent layers 
 2. Dev and Prod product flavors to keep essential non-production code out of production builds. 
 3. [Dagger 2](https://engineering.circle.com/instrumentation-testing-with-dagger-mockito-and-espresso-f07b5f62a85b#.ssgoilb3y) for dependency injection
 4. [RxJava](http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/) for asynchronous data operations
-5. Shelf for basic object disk caching
+5. [Shelf](https://github.com/toddway/Shelf) for basic object disk caching
 6. [Retrofit](http://square.github.io/retrofit/) for web service integration
+9. Activities and Views _without of Fragments_.  [Based on this.](https://corner.squareup.com/2014/10/advocating-against-android-fragments.html)
 7. Junit and Mockito for unit tests
 8. Retrolambda for Java 8 lambda support
 2. Example Interactors to isolate business cases
 2. Example Repository and DataSource to demonstrate separation of caching policies, entity mapping, and external source integration
 2. Injectable Mock DataSource (MockThingService)
-9. Activities with custom Views _instead of Fragments_.  [Based on this.](https://corner.squareup.com/2014/10/advocating-against-android-fragments.html) 
 10. BasePresenter to separate presentation work from Views (e.g. manage view-related Rx subscriptions)
-10. AppCompat Toolbar (replaces ActionBar)
-11. CoordinatorLayout scroll behavior with quick-return toolbar
-12. Generic RecyclerView implementation
-13. LeakCanary
 14. Retrofit ServiceFactory
 15. Rx Scheduler injection
 16. Mocked delay (2 seconds) for Thing Service to demonstrate UI progress feedback
 17. Switchable Environments
 18. Git build integration
 19. Global error handling
-20. List animations for refresh, remove, undo, and toggle view mode
+12. Image loading with Picasso
+
+
 
 <img src="art/settings.gif" style="width:210px;border:1px solid #eeeeee"/>
 

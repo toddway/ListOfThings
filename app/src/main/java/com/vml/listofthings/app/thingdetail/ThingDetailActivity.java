@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -25,19 +26,21 @@ import com.vml.listofthings.core.things.ThingEntity;
 import javax.inject.Inject;
 
 import butterknife.Bind;
-import me.everything.android.ui.overscroll.IOverScrollDecor;
 import me.everything.android.ui.overscroll.IOverScrollState;
-import me.everything.android.ui.overscroll.IOverScrollUpdateListener;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ThingDetailActivity extends BaseActivity implements ThingDetailView {
 
+    public static final String SHARED_ELEMENT = "shared_element";
+    public static final String ID = "id";
+    public static final String SHARED_IMAGE = "shared_image";
     @Inject ThingDetailPresenter presenter;
     @Bind(R.id.summary) TextView summaryTextView;
     @Bind(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
     @Bind(R.id.image_view) ImageView imageView;
     @Bind(R.id.app_bar) AppBarLayout appBarLayout;
     @Bind(R.id.scroll_view) NestedScrollView scrollView;
+    @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,48 +53,25 @@ public class ThingDetailActivity extends BaseActivity implements ThingDetailView
         super.onPostCreate(savedInstanceState);
         App.of(this).component().inject(this);
         presenter.attachView(this, ThingDetailActivity.id(getIntent()));
-
-        IOverScrollDecor decor = OverScrollDecoratorHelper.setUpStaticOverScroll(coordinatorLayout, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
-        decor.setOverScrollUpdateListener(new IOverScrollUpdateListener() {
-            int translationThreshold = 150;
-
-            @Override
-            public void onOverScrollUpdate(IOverScrollDecor decor, int state, float offset) {
-                if (Math.abs(offset) > translationThreshold) { //passed threshold
-                    if (state == IOverScrollState.STATE_BOUNCE_BACK) {
-                        onBeforeBack();
-                        finishAfterTransition();
-                    }
-                }
-            }
-        });
+        initOverscroll();
     }
 
     @Override
     public void onBeforeEnter(View contentView) {
-        super.onBeforeEnter(contentView);
-        ViewCompat.setTransitionName(findViewById(R.id.coordinator_layout), "shared_element");
-        appBarLayout.setAlpha(0);
-        appBarLayout.setVisibility(View.VISIBLE);
+        ViewCompat.setTransitionName(coordinatorLayout, SHARED_ELEMENT);
+        if (isSharedImage(getIntent())) ViewCompat.setTransitionName(imageView, SHARED_IMAGE);
+        hideNonTransitionals();
     }
 
     @Override
     public void onAfterEnter() {
-        super.onAfterEnter();
-        appBarLayout.animate().alpha(1).start();
-
-        //TODO: this is only necessary if we're doing an overscroll reveal, remove otherwise
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey("bitmap_id")) {
-            BitmapDrawable b = new BitmapDrawable(getResources(), BitmapUtil.fetchBitmapFromIntent(bundle));
-            findViewById(android.R.id.content).setBackground(b);
-        }
+        showNonTransitionals();
     }
 
     @Override
     public boolean onBeforeBack() {
-        appBarLayout.setVisibility(View.INVISIBLE);
-        return super.onBeforeBack();
+        hideNonTransitionals();
+        return false;
     }
 
     @Override
@@ -102,27 +82,88 @@ public class ThingDetailActivity extends BaseActivity implements ThingDetailView
 
     @Override
     public void populateDetails(ThingEntity thingEntity) {
-        setToolbarTitle(thingEntity.getTitle());
+        collapsingToolbarLayout.setTitleEnabled(true);
+        collapsingToolbarLayout.setTitle(thingEntity.getTitle());
         summaryTextView.setText(summaryTextView.getText());
-        Picasso.with(this).load("http://lorempixel.com/400/600/").into(imageView);
+        Picasso.with(this).load(thingEntity.getImageUrl()).into(imageView);
+
+        //fix weird sizing bug during shared element transition
+        imageView.setLayoutParams(
+                new CollapsingToolbarLayout.LayoutParams(
+                        getWindow().getDecorView().getWidth(),
+                        imageView.getHeight()
+                )
+        );
     }
 
-    public static void launch(Activity fromActivity, String id, View fromView) {
+    private void hideNonTransitionals() {
+        scrollView.setVisibility(View.INVISIBLE);
+        if (!isSharedImage(getIntent())) {
+            appBarLayout.setVisibility(View.INVISIBLE);
+            appBarLayout.setAlpha(0);
+        }
+    }
+
+    private void showNonTransitionals() {
+        scrollView.setVisibility(View.VISIBLE);
+        appBarLayout.setVisibility(View.VISIBLE);
+        if (!isSharedImage(getIntent())) appBarLayout.animate().alpha(1).start();
+    }
+
+    private void initOverscroll() {
+        //this is only necessary if we're doing an overscroll
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey("bitmap_id")) {
+            BitmapDrawable b = new BitmapDrawable(getResources(), BitmapUtil.fetchBitmapFromIntent(bundle));
+            findViewById(android.R.id.content).setBackground(b);
+        }
+
+        OverScrollDecoratorHelper
+                .setUpStaticOverScroll(
+                        coordinatorLayout,
+                        OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+                )
+                .setOverScrollUpdateListener(
+                        (decor, state, offset) -> {
+                            if (Math.abs(offset) > 150) { //passed threshold
+                                if (state == IOverScrollState.STATE_BOUNCE_BACK) {
+                                    onBeforeBack();
+                                    finishAfterTransition();
+                                }
+                            }
+                        }
+                );
+    }
+
+    public static void launch(Activity fromActivity, String id, View fromView, boolean isSharedImage) {
         Intent intent = new Intent(fromActivity, ThingDetailActivity.class);
-        intent.putExtra("id", id);
-
+        intent.putExtra(ID, id);
+        intent.putExtra(SHARED_IMAGE, isSharedImage);
         View backgroundView = fromActivity.findViewById(android.R.id.content);
-        if (backgroundView != null) BitmapUtil.storeBitmapInIntent(BitmapUtil.createBitmap(backgroundView), intent);
+        BitmapUtil.storeBitmapInIntent(BitmapUtil.createBitmap(backgroundView), intent);
 
-        ActivityOptionsCompat options = TransitionHelper.makeOptionsCompat(
-                fromActivity,
-                Pair.create(fromView, "shared_element")
-        );
+        ActivityOptionsCompat options;
+        if (isSharedImage) {
+            options = TransitionHelper.makeOptionsCompat(
+                    fromActivity
+                    , Pair.create(fromView.findViewById(R.id.image_tall), SHARED_IMAGE)
+                    , Pair.create(fromView, SHARED_ELEMENT)
+            );
+        } else {
+            options = TransitionHelper.makeOptionsCompat(
+                    fromActivity
+                    , Pair.create(fromView, SHARED_ELEMENT)
+            );
+        }
 
         ActivityCompat.startActivity(fromActivity, intent, options.toBundle());
     }
 
     public static String id(Intent intent) {
-        return intent.getStringExtra("id");
+        return intent.getStringExtra(ID);
+    }
+
+    public static boolean isSharedImage(Intent intent) {
+        return intent.getBooleanExtra(SHARED_IMAGE, false);
     }
 }

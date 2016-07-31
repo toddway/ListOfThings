@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/image_wide"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="#F5F5F5"
         android:scaleType="centerCrop"
         />
@@ -17,13 +17,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="?attr/selectableItemBackground"
-        android:padding="8dp">
+        android:padding="16dp">
         <TextView
             android:id="@+id/title_wide"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
+            android:layout_marginBottom="4dp"
             android:maxLines="1"
             tools:text="teslakdjf"/>
         <TextView

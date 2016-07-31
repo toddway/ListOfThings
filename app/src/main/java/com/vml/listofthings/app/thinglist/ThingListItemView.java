@@ -64,13 +64,14 @@ public class ThingListItemView extends FrameLayout {
         titleWide.setText(thingEntity.getTitle());
         summaryTall.setText(thingEntity.getSummary());
         summaryWide.setText(thingEntity.getSummary());
-        Picasso.with(getContext()).load("http://lorempixel.com/400/600/").into(imageTall);
-        Picasso.with(getContext()).load("http://lorempixel.com/400/600/").into(imageWide);
+        Picasso.with(getContext()).load(thingEntity.getImageUrl()).into(imageTall);
+        Picasso.with(getContext()).load(thingEntity.getImageUrl()).into(imageWide);
     }
 
     @OnClick(R.id.item_frame)
     public void onClick(View view) {
-        ThingDetailActivity.launch((Activity) getContext(), thingEntity.getId(), view);
+        boolean shareImage = layoutTall.getVisibility() == VISIBLE;
+        ThingDetailActivity.launch((Activity) getContext(), thingEntity.getId(), view, shareImage);
     }
 
     public void setSize(boolean isTall) {

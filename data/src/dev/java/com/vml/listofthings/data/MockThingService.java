@@ -20,11 +20,19 @@ public class MockThingService implements ThingService {
     }
 
     ThingEntity[] getMockThingList() {
+        long timestamp = System.currentTimeMillis();
+        int imageCount = 10;
         int total = 300;
         ThingEntity[] things = new ThingEntity[total];
         for (int i = 0; i < total; i++) {
             int j = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
-            things[i] = ThingEntity.create("" + j, "Thing " + j, "Details for Thing " + j);
+            int imageId = i % imageCount;
+            things[i] = ThingEntity.create(
+                    "" + j,
+                    "Thing " + j,
+                    "Details for Thing " + j,
+                    "http://lorempixel.com/g/800/800/?" + timestamp + imageId
+            );
         }
         return things;
     }
