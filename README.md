@@ -1,7 +1,7 @@
 # ListOfThings app
 This app is a contrived example to illustrate some recommended techniques for Android. It displays a list of things retrieved from an external source and cached to locally to disk.The external source implementation is currently just a mock object (see MockThingService), but could easily be connected to real sources using a retrofit implementation of ThingService.
 
-<img src="art/list.gif" style="width:210px;border:1px solid #eeeeee"/>
+<img src="art/list.gif" width="300" height="550"/>
  
 ## The app demonstrates the following UI techniques: 
  20. List animations for refresh, remove, undo, and toggle view modes
