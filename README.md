@@ -35,10 +35,10 @@ This app is a contrived example to illustrate some recommended techniques for An
 12. Image loading with Picasso
 
 
-<object data="art/mobile-architecture-diagram.svg" type="image/svg+xml">
-  <img src="art/mobile-architecture-diagram.jpg" width="680" height="500" style="border:1px solid #eeeeee"/>
-</object>
 
+<object data="https://cdn.rawgit.com/VML/ListOfThings-Android/master/art/mobile-architecture-diagram.svg" type="image/svg+xml" style="width:100%">
+    <img style="border:1px solid #eeeeee" src="https://raw.githubusercontent.com/VML/ListOfThings-Android/master/art/mobile-architecture-diagram.jpg" width="680" height="500" />
+</object>
 
 
 License
