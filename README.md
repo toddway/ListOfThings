@@ -9,8 +9,9 @@ This app is a contrived example to illustrate some recommended techniques for An
  10. CollapsibleToolbarLayout with CoordinatorLayout
  22. Overscroll to return to previous Activity
  23. translucent system bars
- 
-## These architectural techniques:
+
+
+## And these architectural techniques:
 1. [Uncle Bob's Clean Artchitecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) with [SOLID principles](http://blog.cleancoder.com/uncle-bob/2016/01/04/ALittleArchitecture.html)
 2. Separate app, core, and data modules to enforce independent layers 
 2. Dev and Prod product flavors to keep essential non-production code out of production builds. 
@@ -34,8 +35,7 @@ This app is a contrived example to illustrate some recommended techniques for An
 12. Image loading with Picasso
 
 
-
-<img src="art/settings.gif" style="width:210px;border:1px solid #eeeeee"/>
+<img src="art/mobile-architecture-diagram.svg" width="680" height="500" style="border:1px solid #eeeeee"/>
 
 
 License
