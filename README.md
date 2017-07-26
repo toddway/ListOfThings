@@ -35,7 +35,10 @@ This app is a contrived example to illustrate some recommended techniques for An
 12. Image loading with Picasso
 
 
-<img src="art/mobile-architecture-diagram.svg" width="680" height="500" style="border:1px solid #eeeeee"/>
+<object data="art/mobile-architecture-diagram.svg" type="image/svg+xml">
+  <img src="art/mobile-architecture-diagram.jpg" width="680" height="500" style="border:1px solid #eeeeee"/>
+</object>
+
 
 
 License
